@@ -1,0 +1,206 @@
+<!-- ENCARGADO DAVID LLERENA-->
+<!--//-------Creación del formulario registrar Evento.-->
+-<Application EditAdvanced="true" AllowParameters="Y" DeferredIntroduction="False" Version="9.7" HomePageName="Eventos" Name="Eventos" AppKey="D8BA50008926a16b1c6e4ec6a8bc" Type="WebForm">
+
+
+-<NewRecordPage Name="New Leads Form - For Internal Use" RichMessage="True" TargetType="AppPage" AutoFocusInFirstField="true" RichFooter="True" RichHeader="True" PageFooter="<br /> <script> function entregar() { 
+<!--//Declaración de variables para la validación de campos requeridos.-->
+var x = document.getElementById('InsertRecordEve_NombreEvento').value; var y = document.getElementById('InsertRecordEve_Fecha').value; if(x == "" || y=="") { document.getElementById('InsertRecordEve_NombreEvento').style.borderColor = "red"; document.getElementById('InsertRecordEve_NombreEvento').placeholder="Campo Requerido"; document.getElementById('InsertRecordEve_NombreEvento').style.color = "red"; document.getElementById('InsertRecordEve_Fecha').style.borderColor = "red"; document.getElementById('InsertRecordEve_Fecha').placeholder="Campo Requerido"; document.getElementById('InsertRecordEve_Fecha').style.color = "red"; return false; } else { document.getElementById('caspioform').submit() alert('Sus cambios han sido guardados'); return true; } } </script><input onclick="entregar()" type="button" value="Enviar" />" PageHeader="<style type="text/css">textarea{resize: vertical; white-space: pre-line;} </style> <script> function listaEve(){ window.location='[@app:URL_4]'; } function salir(){ window.location='[@app:URL_2]'; } </script><button onclick="listaEve();">Lista Eventos</button><button onclick="salir();">Salir</button>" DataSourceName="Eventos" DataSourceType="Table">
+
+<!--//------------Declaración de textfield y labels-->
+
+-<Section Type="MultiColumn" DisplayOrder="1" FieldAlignment="LeftToRight" ColumnCount="1">
+
+<Field Type="Text Field" DisplayOrder="1" DefaultValue="" Required="True" Editable="True" Unique="False" Label="NombreEvento" ColumnName="Eve_NombreEvento" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="25"/>
+
+<Field Type="Text Area" DisplayOrder="2" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Detalle" ColumnName="Eve_Detalle" LabelOrientation="Left" DataType="TEXT" MaxLength="64000" ElementWidthUnit="px" ElementWidth="300" ShowRemainingCharacters="False" Rows="5"/>
+
+<Field Type="File" DisplayOrder="3" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Imagen" ColumnName="Eve_Imagen" EnabledRotation="False" DisplayType="Plain Text" SizeLimit="25" Replace="False" FolderPath="" Association="Upload" LabelOrientation="Left" DataType="FILE"/>
+
+<Field Type="Text Field" DisplayOrder="4" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Eve Fecha" ColumnName="Eve_Fecha" LabelOrientation="Left" DataType="DATE/TIME" Calendar="True" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="25"/>
+
+</Section>
+
+</NewRecordPage>
+
+<Note/>
+
+</Application>
+<!--//------Creación del CRUD de eventos-->
+
+
+-<Application EditAdvanced="True" AllowParameters="Y" Version="9.7" HomePageName="Eventos_CRUD" Name="Eventos_CRUD" AppKey="D8BA500026f81b42928e4e2bb560" Type="WebApp" AllowCriteriaParameters="N">
+
+<!--//--------Creación de la caja de búsqueda-->
+-<SearchPage Name="Eventos_CRUD" AutoFocusInFirstField="true" RichFooter="False" RichHeader="False" DataSourceName="Eventos" DataSourceType="Table" PageName="Eventos_CRUD" GlobalOperator="AND">
+
+
+-<CriteriaRoot>
+
+
+-<CriteriaGroup Type="AND">
+
+<CriteriaItem CriteriaId="1"/>
+
+</CriteriaGroup>
+
+</CriteriaRoot>
+
+
+-<Section Type="MultiColumn" DisplayOrder="1" FieldAlignment="LeftToRight" ColumnCount="1">
+
+<!--//---------Valor por el cual se realiza la búsqueda.-->
+-<Field DisplayOrder="1" ColumnName="Eve_Fecha" DataType="DATE/TIME">
+
+<FieldMatch Type="Text Field" DisplayOrder="1" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Eve Fecha" LabelOrientation="Left" Calendar="True" MinLength="0" MaxLength="255" Size="25" CriteriaId="1" Operator="OR" ComparisonType="=" Precision="Date" MatchNull="N"/>
+
+</Field>
+
+</Section>
+
+<!--//-----------Función Eliminar registro-->
+-<SearchRecordsetPage RichFooter="False" RichHeader="False" SearchAgainLink="True" InlineAdd="false" TotalRows="" DisplayColumns="1" FreezeColumnsCount="0" ApplyRandomSort="False" AjaxEnabled="True" BulkUpdate="False" BulkDelete="False" JumpToPage="True" ColumnSorting="true" HideNumberOfRecords="False" RowsPerPage="25" Display="Tabular" FreezeHeader="False" DisplayRowIndex="False" GridEdit="False" ColumnSortingType="Column">
+<!--//-------Listar los resultados de la búsqueda.-->
+
+-<DisplayField Type="Plain Text" DisplayOrder="1" Editable="False" Unique="True" Label="Eve Codigo" ColumnName="Eve_Codigo" DataType="AUTONUMBER" SortDir="" SortOrder="">
+
+<Format Type=""/>
+
+</DisplayField>
+
+
+-<DisplayField Type="Plain Text" DisplayOrder="2" Editable="True" Unique="False" Label="Eve Detalle" ColumnName="Eve_Detalle" DataType="TEXT" SortDir="" SortOrder="">
+
+<Format Type=""/>
+
+<Field Type="Text Area" DisplayOrder="1" DefaultValue="" Required="false" Editable="True" Unique="False" ColumnName="Eve_Detalle" LabelOrientation="Left" DataType="TEXT" MaxLength="64000"/>
+
+</DisplayField>
+
+
+-<DisplayField Type="AutoFile" DisplayOrder="3" Editable="True" Unique="False" Label="Eve Imagen" ColumnName="Eve_Imagen" DataType="FILE" SortDir="" SortOrder="" Height="100" Width="100" ShowAsLink="true" ShowFullPath="false">
+
+<Field Type="File" DisplayOrder="1" DefaultValue="" Required="false" Editable="True" Unique="False" ColumnName="Eve_Imagen" DisplayType="Plain Text" SizeLimit="15" Replace="false" FolderPath="" Association="Upload" LabelOrientation="Left" DataType="FILE"/>
+
+</DisplayField>
+
+
+-<DisplayField Type="Plain Text" DisplayOrder="4" Editable="True" Unique="False" Label="Eve NombreEvento" ColumnName="Eve_NombreEvento" DataType="STRING" SortDir="" SortOrder="">
+
+<Format Type=""/>
+
+<Field Type="Text Field" DisplayOrder="1" DefaultValue="" Required="false" Editable="True" Unique="False" ColumnName="Eve_NombreEvento" LabelOrientation="Left" DataType="STRING" Calendar="false" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="25"/>
+
+</DisplayField>
+
+
+-<DisplayField Type="Plain Text" DisplayOrder="5" Editable="True" Unique="False" Label="Eve Fecha" ColumnName="Eve_Fecha" DataType="DATE/TIME" SortDir="" SortOrder="">
+
+<Format Type="Shortdate"/>
+
+<Field Type="Text Field" DisplayOrder="1" DefaultValue="" Required="false" Editable="True" Unique="False" ColumnName="Eve_Fecha" LabelOrientation="Left" DataType="DATE/TIME" Calendar="true" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="25"/>
+
+</DisplayField>
+
+
+-<RecordDetailsPage RichMessage="False" TargetType="Results" AutoFocusInFirstField="False" RichFooter="False" RichHeader="False" SearchAgainLink="True" JumpToPage="True" RichDeleteMessage="False" DeleteRecord="False" DeleteTargetType="Results">
+
+
+-<Section Type="MultiColumn" DisplayOrder="1" FieldAlignment="LeftToRight" ColumnCount="1">
+
+
+-<Field Type="Static" DisplayOrder="1" DefaultValue="" Required="False" Editable="False" Unique="True" Label="Eve Codigo" ColumnName="Eve_Codigo" DisplayType="Plain Text" LabelOrientation="Left" DataType="AUTONUMBER">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="2" DefaultValue="" Required="False" Editable="False" Unique="False" Label="Eve Detalle" ColumnName="Eve_Detalle" DisplayType="Plain Text" LabelOrientation="Left" DataType="TEXT">
+
+<Format Type=""/>
+
+</Field>
+
+<Field Type="Static" DisplayOrder="3" DefaultValue="" Required="False" Editable="False" Unique="False" Label="Eve Imagen" ColumnName="Eve_Imagen" DisplayType="AutoFile" LabelOrientation="Left" DataType="FILE" Height="" Width="" ShowAsLink="True" ShowFullPath="False"/>
+
+
+-<Field Type="Static" DisplayOrder="4" DefaultValue="" Required="False" Editable="False" Unique="False" Label="Eve NombreEvento" ColumnName="Eve_NombreEvento" DisplayType="Plain Text" LabelOrientation="Left" DataType="STRING">
+
+<Format Type=""/>
+
+</Field>
+
+</Section>
+
+</RecordDetailsPage>
+
+<RecordAction DisplayOrder="1" Label="Edit" ActionType="INLINE EDIT"/>
+
+<RecordAction DisplayOrder="2" Label="Delete" ActionType="INLINE DELETE"/>
+
+<RecordAction Type="Special" DisplayOrder="3" Label="View Details" ActionType="VIEW"/>
+
+</SearchRecordsetPage>
+
+</SearchPage>
+
+<Note/>
+
+</Application>
+
+<!--//-------------Función Modificar registro-->
+-<Application EditAdvanced="True" AllowParameters="Y" Version="9.7" HomePageName="Eventos_Galeria" Name="Eventos_Galeria" AppKey="D8BA5000086f4e7d741d41f5a27b" Type="WebApp" AllowCriteriaParameters="N">
+
+
+-<StandaloneRecordsetPage Name="Contacts List" RichFooter="True" RichHeader="True" PageHeader="<h1></h1> " DataSourceName="Eventos" DataSourceType="Table" PageName="Contacts List" SearchAgainLink="False" InlineAdd="False" TotalRows="9999" DisplayColumns="4" FreezeColumnsCount="0" ApplyRandomSort="True" AjaxEnabled="False" BulkUpdate="False" BulkDelete="False" JumpToPage="False" ColumnSorting="false" HideNumberOfRecords="true" RowsPerPage="6" Display="Columnar" ReportFooter="" ReportHeader="" DefaultOperator="AND">
+
+
+-<DisplayField Type="Plain Text" DisplayOrder="1" Editable="False" Unique="False" Label="" ColumnName="Eve_Detalle" DataType="TEXT" SortDir="" SortOrder="" KeepWithNext="False">
+
+<Format Type=""/>
+
+</DisplayField>
+
+<DisplayField Type="Image" DisplayOrder="2" Editable="False" Unique="False" Label="" ColumnName="Eve_Imagen" DataType="FILE" SortDir="" SortOrder="" KeepWithNext="False" Height="300" Width="300"/>
+
+
+-<RecordDetailsPage RichMessage="False" TargetType="Results" AutoFocusInFirstField="False" RichFooter="False" RichHeader="False" SearchAgainLink="False" JumpToPage="True" RichDeleteMessage="False" DeleteRecord="False" DeleteTargetType="Results">
+
+
+-<Section Type="MultiColumn" DisplayOrder="1" FieldAlignment="LeftToRight" ColumnCount="1">
+
+
+-<Field Type="Static" DisplayOrder="1" DefaultValue="" Required="False" Editable="False" Unique="False" Label="NombreEvento" ColumnName="Eve_NombreEvento" DisplayType="Plain Text" LabelOrientation="Left" DataType="STRING">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="2" DefaultValue="" Required="False" Editable="False" Unique="False" Label="Fecha" ColumnName="Eve_Fecha" DisplayType="Plain Text" LabelOrientation="Left" DataType="DATE/TIME">
+
+<Format Type="Shortdate"/>
+
+</Field>
+
+<Field Type="Static" DisplayOrder="3" DefaultValue="" Required="False" Editable="False" Unique="False" Label="Imagen" ColumnName="Eve_Imagen" DisplayType="AutoFile" LabelOrientation="Left" DataType="FILE" Height="500" Width="500" ShowAsLink="true" ShowFullPath="false"/>
+
+
+-<Field Type="Static" DisplayOrder="4" DefaultValue="" Required="False" Editable="False" Unique="False" Label="Detalle" ColumnName="Eve_Detalle" DisplayType="Plain Text" LabelOrientation="Left" DataType="TEXT">
+
+<Format Type=""/>
+
+</Field>
+
+</Section>
+
+</RecordDetailsPage>
+
+<RecordAction Type="Special" DisplayOrder="1" Label="View Details" ActionType="VIEW"/>
+
+</StandaloneRecordsetPage>
+
+<Note/>
+
+</Application>
