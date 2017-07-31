@@ -20,6 +20,7 @@
 
 
 <!--//-------------Creación Formulario Galeria-->
+
 <Application EditAdvanced="True" AllowParameters="Y" Version="9.7" HomePageName="Capacitaciones_Galeria" Name="Capacitaciones_Galeria" AppKey="D8BA50003afb85d38a364d5ba57b" Type="WebApp" AllowCriteriaParameters="N">
 <StandaloneRecordsetPage Name="Contacts List" RichFooter="True" RichHeader="True" PageHeader="<h1></h1> " DataSourceName="Capacitacion" DataSourceType="Table" PageName="Contacts List" SearchAgainLink="False" InlineAdd="False" TotalRows="9999" DisplayColumns="10" FreezeColumnsCount="0" ApplyRandomSort="True" AjaxEnabled="False" BulkUpdate="False" BulkDelete="False" JumpToPage="False" ColumnSorting="false" HideNumberOfRecords="true" RowsPerPage="3" Display="Columnar" ReportFooter="" ReportHeader="" DefaultOperator="AND">
 <CriteriaRoot>
