@@ -1,0 +1,80 @@
+<!-- ENCARGADO DAVID ALVARADO-->
+<!--//-------Creación del formulario registrar Capacitacion.-->
+
+<Application EditAdvanced="true" AllowParameters="Y" DeferredIntroduction="False" Version="9.7" HomePageName="Capacitacion" Name="Capacitacion" AppKey="D8BA5000a6bcd83d8a55490b9672" Type="WebForm">
+<!--//------------Creación botones enviar y listar-->
+<NewRecordPage Name="New Leads Form - For Internal Use" RichMessage="True" TargetType="AppPage" AutoFocusInFirstField="true" RichFooter="True" RichHeader="True" PageFooter="<br /> <script> function entregar() { var x = document.getElementById('InsertRecordCap_Titulo').value; var y = document.getElementById('InsertRecordCap_Descripcion').value; if(x == "" || y == "") { document.getElementById('InsertRecordCap_Titulo').style.borderColor = "red"; document.getElementById('InsertRecordCap_Titulo').placeholder="Campo Requerido"; document.getElementById('InsertRecordCap_Titulo').style.color = "red"; document.getElementById('InsertRecordCap_Descripcion').style.borderColor = "red"; document.getElementById('InsertRecordCap_Descripcion').placeholder="Campo Requerido"; document.getElementById('InsertRecordCap_Descripcion').style.color = "red"; return false; } else { document.getElementById('caspioform').submit() alert('Sus cambios han sido guardados'); return true; } } </script><input onclick="entregar()" type="button" value="Enviar" />" PageHeader="<style type="text/css">textarea{resize: vertical; white-space: pre-line;} </style> <script> function listaEve(){ window.location='[@app:URL_22]'; } function salir(){ window.location='[@app:URL_2]'; } </script><button onclick="listaEve();">Lista Capacitaciones</button><button onclick="salir();">Salir</button>" DataSourceName="Capacitacion" DataSourceType="Table">
+<Section Type="MultiColumn" DisplayOrder="1" FieldAlignment="LeftToRight" ColumnCount="1">
+<!--//------------Declaración de textfield y labels-->
+<Field Type="Text Field" DisplayOrder="1" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Titulo" ColumnName="Cap_Titulo" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="25"/>
+<Field Type="Text Area" DisplayOrder="2" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Descripción" ColumnName="Cap_Descripcion" LabelOrientation="Left" DataType="TEXT" MaxLength="64000" ShowRemainingCharacters="False" Rows="10" Columns="75" RichEditMode="None"/>
+<Field Type="File" DisplayOrder="3" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Imagen" ColumnName="Cap_Imagen" EnabledRotation="False" DisplayType="Plain Text" SizeLimit="15" Replace="False" FolderPath="" Association="Upload" LabelOrientation="Left" DataType="FILE" ResizeHeight="600" ResizerEnabled="True"/>
+</Section>
+</NewRecordPage>
+<Note/>
+</Application>
+
+
+
+<!--//-------------Creación Formulario Galeria-->
+<Application EditAdvanced="True" AllowParameters="Y" Version="9.7" HomePageName="Capacitaciones_Galeria" Name="Capacitaciones_Galeria" AppKey="D8BA50003afb85d38a364d5ba57b" Type="WebApp" AllowCriteriaParameters="N">
+<StandaloneRecordsetPage Name="Contacts List" RichFooter="True" RichHeader="True" PageHeader="<h1></h1> " DataSourceName="Capacitacion" DataSourceType="Table" PageName="Contacts List" SearchAgainLink="False" InlineAdd="False" TotalRows="9999" DisplayColumns="10" FreezeColumnsCount="0" ApplyRandomSort="True" AjaxEnabled="False" BulkUpdate="False" BulkDelete="False" JumpToPage="False" ColumnSorting="false" HideNumberOfRecords="true" RowsPerPage="3" Display="Columnar" ReportFooter="" ReportHeader="" DefaultOperator="AND">
+<CriteriaRoot>
+<CriteriaGroup Type="AND">
+<CriteriaItem CriteriaId="1"/>
+<CriteriaItem CriteriaId="2"/>
+<CriteriaItem CriteriaId="3"/>
+</CriteriaGroup>
+</CriteriaRoot>
+<DefaultCriteria ColumnName="Cap_Descripcion">
+<Match Value="" CriteriaId="1" Operator="OR" ComparisonType="="/>
+</DefaultCriteria>
+<DefaultCriteria ColumnName="Cap_Imagen">
+<Match Value="" CriteriaId="2" Operator="OR" ComparisonType="="/>
+</DefaultCriteria>
+<DefaultCriteria ColumnName="Cap_Titulo">
+<Match Value="" CriteriaId="3" Operator="OR" ComparisonType="="/>
+</DefaultCriteria>
+<DisplayField Type="Plain Text" DisplayOrder="1" Editable="False" Unique="False" Label="[@field:Cap_Titulo]" ColumnName="Cap_Descripcion" DataType="TEXT" SortDir="" SortOrder="" KeepWithNext="False">
+<Format Type=""/>
+</DisplayField>
+<DisplayField Type="Image" DisplayOrder="2" Editable="False" Unique="False" Label="" ColumnName="Cap_Imagen" DataType="FILE" SortDir="" SortOrder="" KeepWithNext="False" Height="400" Width="400"/>
+</StandaloneRecordsetPage>
+<Note/>
+</Application>
+
+
+<!--//------Creación del CRUD de Capacitaciones-->
+
+<Application EditAdvanced="true" AllowParameters="Y" Version="9.7" HomePageName="CapacitacionesVer" Name="CapacitacionesVer" AppKey="D8BA5000b4bf7bd4642644aeb068" Type="WebApp" AllowCriteriaParameters="N">
+<!--//-----------Creación botones-->
+<StandaloneRecordsetPage Name="Contacts List" RichFooter="True" RichHeader="True" PageHeader="<script> function listaArt(){ window.location='[@app:URL_7]'; } function salir(){ window.location='[@app:URL_2]'; } </script><button onclick="listaArt();">Agregar Capacitaci&oacute;n</button><button onclick="salir();">Salir</button> <h1><br /> Capacitaciones</h1> " DataSourceName="Capacitacion" DataSourceType="Table" PageName="Contacts List" SearchAgainLink="False" InlineAdd="False" TotalRows="9999" DisplayColumns="2" FreezeColumnsCount="0" ApplyRandomSort="True" AjaxEnabled="False" BulkUpdate="False" BulkDelete="False" JumpToPage="False" ColumnSorting="false" HideNumberOfRecords="false" RowsPerPage="20" Display="Columnar" ReportFooter="" ReportHeader="" DefaultOperator="AND">
+<CriteriaRoot>
+<CriteriaGroup Type="AND">
+<CriteriaItem CriteriaId="1"/>
+<CriteriaItem CriteriaId="3"/>
+</CriteriaGroup>
+</CriteriaRoot>
+<DefaultCriteria ColumnName="Cap_Titulo">
+<Match Value="" CriteriaId="1" Operator="OR" ComparisonType="="/>
+</DefaultCriteria>
+<DefaultCriteria ColumnName="Cap_Imagen">
+<Match Value="" CriteriaId="3" Operator="OR" ComparisonType="="/>
+</DefaultCriteria>
+<DisplayField Type="Plain Text" DisplayOrder="1" Editable="False" Unique="False" Label="Título" ColumnName="Cap_Titulo" DataType="STRING" SortDir="" SortOrder="" KeepWithNext="False">
+<Format Type=""/>
+</DisplayField>
+<DisplayField Type="Image" DisplayOrder="2" Editable="False" Unique="False" Label="" ColumnName="Cap_Imagen" DataType="FILE" SortDir="" SortOrder="" KeepWithNext="False" Height="200" Width="300"/>
+<RecordDetailsPage RichMessage="False" TargetType="Results" AutoFocusInFirstField="True" RichFooter="True" RichHeader="True" PageHeader="<style type="text/css">textarea{resize: vertical; white-space: pre-line;} </style> <h1>Capacitaciones</h1> " SearchAgainLink="False" JumpToPage="True" RichDeleteMessage="False" DeleteRecord="True">
+<Section Type="MultiColumn" DisplayOrder="1" FieldAlignment="LeftToRight" ColumnCount="1">
+<Field Type="Text Field" DisplayOrder="1" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Titulo" ColumnName="Cap_Titulo" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" TypePassword="false" MinLength="0" MaxLength="255" Size="25"/>
+<Field Type="Text Area" DisplayOrder="2" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Descripción" ColumnName="Cap_Descripcion" LabelOrientation="Left" DataType="TEXT" MaxLength="64000" ShowRemainingCharacters="False" Rows="5" Columns="50"/>
+<Field Type="File" DisplayOrder="3" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Imagen" ColumnName="Cap_Imagen" DisplayType="Image" SizeLimit="1" Replace="False" FolderPath="" Association="Upload" LabelOrientation="Left" DataType="FILE" Height="" Width=""/>
+</Section>
+</RecordDetailsPage>
+<!--//-----------Función Eliminar registro-->
+<RecordAction DisplayOrder="1" Label="Delete" ActionType="INLINE DELETE"/>
+<RecordAction Type="Special" DisplayOrder="2" Label="View Details" ActionType="VIEW"/>
+</StandaloneRecordsetPage>
+<Note/>
+</Application>
