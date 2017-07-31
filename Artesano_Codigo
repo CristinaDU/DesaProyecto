@@ -1,0 +1,123 @@
+#ENCARGADA CRISTINA DÌAZ
+#GESTION ARTESANOS
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+#FORMULARIO GESTIÓN ARTESANOS
+<Application EditAdvanced="true" AllowParameters="Y" DeferredIntroduction="False" Version="9.8" HomePageName="Artesanos_1" Name="Artesanos_1" AppKey="D8BA5000361c8dbe4feb40eba5b5" Type="WebForm">
+<NewRecordPage Name="New Leads Form - For Internal Use" RichMessage="True" Message="Se ingres&oacute; los datos con &eacute;xito.<br /> <br /> &nbsp; <script> 
+#Ingreso al formulario de ingreso de artesano 
+function agregarArtesan(){ 
+window.location='[@app:URL_20]'; #direccionamiento al datapages de la galería de artesanos
+}
+</script><button onclick="agregarArtesan();">Agregar Artesano</button>" #captura el click del boton seleccionado
+TargetType="HTMLPage" AutoFocusInFirstField="false" RichFooter="True" RichHeader="True" PageFooter="<br /> <script> 
+#Validación de la cedula de identidad
+function validar_cedula() { 
+#Declaración de las variables 
+	var i; 
+	var cedula; #variable para guardar el texto ingresado
+	var acumulado; 
+	cedula=document.getElementById('InsertRecordArt_CI').value; #obtención del texto ingresado
+	var instancia; 
+	acumulado=0; 
+#proceso de obtención de cada digito de la cedula 
+	for (i=1;i<=9;i++) { 
+	 if (i%2!=0) 
+	 { 
+	   instancia=cedula.substring(i-1,i)*2; 
+	   if (instancia>9) 
+	     instancia-=9; 
+	 } 
+	 else 
+	   instancia=cedula.substring(i-1,i); 
+	   acumulado+=parseInt(instancia); 
+	}
+	while (acumulado>0) 
+	  acumulado-=10; 
+#verifica si la cedula ingresada es incorrecta 
+	if (cedula.substring(9,10)!=(acumulado*-1)) { 
+#envió de mensajes de error 
+	   document.getElementById('InsertRecordArt_CI').style.borderColor = "red"; 
+	   document.getElementById('InsertRecordArt_CI').value="Cédula incorrecta"; 
+	   document.getElementById('InsertRecordArt_CI').style.color = "red"; return false; 
+	} 
+#confirmación de cedula correcta
+	document.getElementById('caspioform').submit() 
+	alert('Sus cambios han sido guardados'); 
+	return true; 
+} 
+</script><input onclick="validar_cedula()" type="button" value="Enviar" />" 
+PageHeader="<style type="text/css">textarea{resize: vertical; white-space: pre-line;} </style> <script> 
+#Ingreso a la galería de los artesanos ingresados
+function listaArt(){ 
+	window.location='[@app:URL_19]'; #direccionamiento al datapages de la galería de artesanos
+} 
+#cerrar sesión de administrador
+function salir(){ 
+	window.location='[@app:URL_2]'; #direccionamiento al login de administrador
+} 
+</script><button onclick="listaArt();">Lista Artesanos</button><button onclick="salir();">Salir</button>" 
+#Creación del formulario Registro de artesanos
+DataSourceName="Artesanos" DataSourceType="Table">
+<Section Type="MultiColumn" DisplayOrder="1" FieldAlignment="LeftToRight" ColumnCount="2">
+<Field Type="HTML Block" DisplayOrder="1" DefaultValue="" Required="False" Editable="True" Unique="False" Label="<h2 style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"><span style="color:#000000;"><strong>DATOS PERSONALES</strong></span></h2> <br />" RichUI="True" ColumnName="HTML Block 1"/>
+<Field Type="File" DisplayOrder="2" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Foto" ColumnName="Art_Imagen" EnabledRotation="False" DisplayType="Plain Text" SizeLimit="50" Replace="False" FolderPath="" Association="Upload" LabelOrientation="Left" DataType="FILE"/>
+<Field Type="Text Field" DisplayOrder="3" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Nombres y Apellidos" ColumnName="Art_Nombre" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" ElementWidthUnit="px" ElementWidth="250"/>
+<Field Type="Text Field" DisplayOrder="4" DefaultValue="" Required="True" Editable="True" Unique="True" Label="C.I. / RUC / RISE" ColumnName="Art_CI" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" ElementWidthUnit="px" ElementWidth="250"/>
+<Field Type="Text Field" DisplayOrder="5" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Dirección Domiciliaria" ColumnName="Art_Direccion" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" ElementWidthUnit="px" ElementWidth="250"/>
+<Field Type="Text Field" DisplayOrder="6" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Teléfono" ColumnName="Art_Telefono" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" ElementWidthUnit="px" ElementWidth="250"/>
+<Field Type="Email" DisplayOrder="7" DefaultValue="" Required="False" Editable="True" Unique="False" Label="E-mail" ColumnName="Art_Email" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" MinLength="0" MaxLength="255" ElementWidthUnit="px" ElementWidth="250"/>
+<Field Type="Text Field" DisplayOrder="8" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Fecha de nacimiento" ColumnName="Art_Fecha_nacimiento" LabelOrientation="Left" DataType="DATE/TIME" Calendar="True" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" ElementWidthUnit="px" ElementWidth="250"/>
+</Section>
+<Section Type="MultiColumn" DisplayOrder="2" FieldAlignment="LeftToRight" ColumnCount="2">
+<Field Type="HTML Block" DisplayOrder="1" DefaultValue="" Required="False" Editable="True" Unique="False" Label="<h2 style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"><span style="color:#000000;"><strong>DATOS ARTESANALES</strong></span></h2>" RichUI="true" ColumnName="HTML Block 2"/>
+<Field Type="File" DisplayOrder="2" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Logo de la marca" ColumnName="Art_Logo" EnabledRotation="False" DisplayType="Plain Text" SizeLimit="50" Replace="False" FolderPath="" Association="Upload" LabelOrientation="Left" DataType="FILE"/>
+<Field Type="Text Field" DisplayOrder="3" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Número de Afiliación del Artesano" ColumnName="Art_Numero_Afiliacion" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" ElementWidthUnit="px" ElementWidth="250"/>
+<Field Type="Text Field" DisplayOrder="4" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Sector" ColumnName="Art_Sector" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" ElementWidthUnit="px" ElementWidth="250"/>
+<Field Type="Radio Buttons" DisplayOrder="5" Required="True" Editable="True" Unique="False" Label="Patente Municipal" ColumnName="Art_PatenteMunicipal" LabelOrientation="Left" DataType="STRING" LineBreak="False">
+<Option DisplayOrder="" IsSelected="True" DisplayText="SI" Value="SI"/>
+<Option DisplayOrder="" IsSelected="False" DisplayText="NO" Value="NO"/>
+</Field>
+<Field Type="Radio Buttons" DisplayOrder="6" Required="True" Editable="True" Unique="False" Label="Acuerdo Interministerial" ColumnName="Art_AcuerdoInterministerial" LabelOrientation="Left" DataType="STRING" LineBreak="False">
+<Option DisplayOrder="" IsSelected="True" DisplayText="SI" Value="SI"/>
+<Option DisplayOrder="" IsSelected="False" DisplayText="NO" Value="NO"/>
+</Field>
+<Field Type="Text Field" DisplayOrder="7" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Razón Social" ColumnName="Art_RazonSocial" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" MinLength="0" MaxLength="255" Size="25"/>
+<Field Type="Text Field" DisplayOrder="8" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Actividad del Negocio" ColumnName="Art_Actividad_Negocio" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" MinLength="0" MaxLength="255" Size="25"/>
+<Field Type="Text Field" DisplayOrder="9" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Año de creación" ColumnName="Art_ReseaHistorica" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" MinLength="0" MaxLength="255" Size="25"/>
+<Field Type="HTML Block" DisplayOrder="10" DefaultValue="" Required="False" Editable="True" Unique="False" Label="<br /> <script> 
+#Validación si la tecla ingresada es una letra
+function isLetterKey(evt) { 
+	evt = (evt) ? evt : event; #captura el evento ocasionado
+	var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0)); #captura la letra ingresada
+	if (charCode > 31 && (charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122)) { #valida si no es una letra
+	 return false; #retorna la variable false que significa que no es una letra 
+	} 
+	return true; #retorna la variable true que significa que es una letra 
+} 
+#asignacion del evento en la variable nombre
+	document.getElementById('InsertRecordArt_Nombre').onkeypress =isLetterKey; document.getElementById('InsertRecordArt_Sector').onkeypress =isLetterKey; 
+#asignacion del evento en la variable razon social
+	document.getElementById('InsertRecordArt_RazonSocial').onkeypress =isLetterKey; 
+#asignacion del evento en la variable actividad del negocio
+	document.getElementById('InsertRecordArt_Actividad_Negocio').onkeypress =isLetterKey; 
+</script>" RichUI="True" ColumnName="HTML Block 4"/>
+<Field Type="HTML Block" DisplayOrder="11" DefaultValue="" Required="False" Editable="True" Unique="False" Label="<br /> 
+<script> 
+#Validación si la tecla ingresada es un número
+function isNumberKey(evt){ 
+	var charCode = (evt.which) ? evt.which : event.keyCode  #captura el evento ocasionado y captura la tecla ingresada
+	if (charCode > 31 && (charCode < 48 || charCode > 57)) #valida si no es un número
+	  return false; #retorna la variable false que significa que no es un número
+	return true; #retorna la variable true que significa que es un número
+} 
+#asignación del evento en la variable cedula
+	document.getElementById('InsertRecordArt_CI').onkeypress =isNumberKey; 
+#asignación del evento en la variable teléfono
+	document.getElementById('InsertRecordArt_Telefono').onkeypress =isNumberKey; 
+</script>" RichUI="True" ColumnName="HTML Block 3"/>
+</Section>
+</NewRecordPage>
+<Note/>
+</Application>
+</xml>
