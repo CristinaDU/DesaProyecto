@@ -8,6 +8,7 @@
 <Section Type="MultiColumn" DisplayOrder="1" FieldAlignment="LeftToRight" ColumnCount="1">
 
 <!--//------------Declaración de textfield y labels-->
+
 <Field Type="Text Field" DisplayOrder="1" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Titulo" ColumnName="Cap_Titulo" LabelOrientation="Left" DataType="STRING" Calendar="False" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="25"/>
 <Field Type="Text Area" DisplayOrder="2" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Descripción" ColumnName="Cap_Descripcion" LabelOrientation="Left" DataType="TEXT" MaxLength="64000" ShowRemainingCharacters="False" Rows="10" Columns="75" RichEditMode="None"/>
 <Field Type="File" DisplayOrder="3" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Imagen" ColumnName="Cap_Imagen" EnabledRotation="False" DisplayType="Plain Text" SizeLimit="15" Replace="False" FolderPath="" Association="Upload" LabelOrientation="Left" DataType="FILE" ResizeHeight="600" ResizerEnabled="True"/>
