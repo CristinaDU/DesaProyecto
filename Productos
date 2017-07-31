@@ -1,0 +1,289 @@
+<!-- ENCARGADO JOSE ARELLANO-->
+<!--//-------Crear del formulario de registro de Productos.-->
+<?xml version="1.0" encoding="UTF-8"?>
+
+-<xml>
+
+
+-<Application EditAdvanced="true" AllowParameters="Y" DeferredIntroduction="False" Version="9.8" HomePageName="Artesanos_Productos" Name="Artesanos_Productos" AppKey="4D3B5000eeca6377338646ea9385" Type="WebForm">
+
+
+-<NewRecordPage Name="New Leads Form - For Internal Use" RichMessage="True" TargetAppKey="[@import:AppKey:4D3B5000eeca6377338646ea9385:408357C9013D4E9395D4660E7BE82BFF]" TargetType="DataPage" AutoFocusInFirstField="true" RichFooter="True" RichHeader="True" PageFooter="<br /> <script> function entregarP() { var x = document.getElementById('InsertRecordProd_Materia_Prima').value; var y = document.getElementById('InsertRecordProd_Precio').value; var z = document.getElementById('InsertRecordProd_Telefono').value; var c = document.getElementById('InsertRecordProd_Lu_Ela').value; var d = document.getElementById('InsertRecordProd_Cantidad').value; if(x == "" || y == "" || c == "" || d == "") { document.getElementById('InsertRecordProd_Materia_Prima').style.borderColor = "red"; document.getElementById('InsertRecordProd_Materia_Prima').placeholder="Campo Requerido"; document.getElementById('InsertRecordProd_Materia_Prima').style.color = "red"; document.getElementById('InsertRecordProd_Precio').style.borderColor = "red"; document.getElementById('InsertRecordProd_Precio').placeholder="Campo Requerido"; document.getElementById('InsertRecordProd_Precio').style.color = "red"; document.getElementById('InsertRecordProd_Telefono').style.borderColor = "red"; document.getElementById('InsertRecordProd_Telefono').placeholder="Campo Requerido"; document.getElementById('InsertRecordProd_Telefono').style.color = "red"; document.getElementById('InsertRecordProd_Lu_Ela').style.borderColor = "red"; document.getElementById('InsertRecordProd_Lu_Ela').placeholder="Campo Requerido"; document.getElementById('InsertRecordProd_Lu_Ela').style.color = "red"; document.getElementById('InsertRecordProd_Cantidad').style.borderColor = "red"; document.getElementById('InsertRecordProd_Cantidad').placeholder="Campo Requerido"; document.getElementById('InsertRecordProd_Cantidad').style.color = "red"; return false; } else { document.getElementById('caspioform').submit() alert('Sus cambios han sido guardados'); return true; } } </script><input onclick="entregarP()" type="button" value="Enviar" />" PageHeader="<style type="text/css">textarea{resize: vertical; white-space: pre-line;} </style> <script> function listaProd(){ window.location='https://[@import:ServerName:DefaultSubDomain]/dp.asp?AppKey=4D3B5000be84c690bc514515928a'; } function salir(){ window.location='https://[@import:ServerName:DefaultSubDomain]/folderlogout'; } </script><button onclick="listaProd();">Lista Productos</button><button onclick="salir();">Salir<br /> </button><br /> &nbsp;" PageName="Artesanos_Productos" DataSourceName="Artesano_Producto" DataSourceType="Table">
+
+
+-<Section Type="MultiColumn" DisplayOrder="1" FieldAlignment="LeftToRight" ColumnCount="1">
+
+<Field Type="HTML Block" DisplayOrder="1" DefaultValue="" Required="False" Editable="True" Unique="False" Label="<h1 style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">Datos del Producto</h1>" RichUI="True" ColumnName="HTML Block 1"/>
+
+<Field Type="HTML Block" DisplayOrder="2" DefaultValue="" Required="False" Editable="True" Unique="False" Label="<script> function valida(e){ tecla = (document.all) ? e.keyCode : e.which; //Tecla de retroceso para borrar, siempre la permite if (tecla==8){ return true; } // Patron de entrada, en este caso solo acepta numeros patron =/[0-9]/; tecla_final = String.fromCharCode(tecla); return patron.test(tecla_final); } function validaP(e){ tecla = (document.all) ? e.keyCode : e.which; //Tecla de retroceso para borrar, siempre la permite if (tecla==8){ return true; } var x = document.getElementById('InsertRecordProd_Precio').value.indexOf(","); if(x==-1){ if(tecla==44){ return true; } } // Patron de entrada, en este caso solo acepta numeros patron =/[0-9]/; tecla_final = String.fromCharCode(tecla); return patron.test(tecla_final); } window.onload = function() { document.getElementById('InsertRecordProd_Telefono').onkeypress = function(event) { return(valida(event)); }; document.getElementById('InsertRecordProd_Cantidad').onkeypress = function(event) { return(valida(event)); }; document.getElementById('InsertRecordProd_Talla').onkeypress = function(event) { return(valida(event)); }; document.getElementById('InsertRecordProd_Medidas').onkeypress = function(event) { return(valida(event)); }; document.getElementById('InsertRecordProd_Peso').onkeypress = function(event) { return(valida(event)); }; document.getElementById('InsertRecordProd_Precio').onkeypress = function(event) { return(validaP(event)); }; } </script>" RichUI="True" ColumnName="HTML Block 3"/>
+
+</Section>
+
+
+-<Section Type="MultiColumn" DisplayOrder="2" FieldAlignment="LeftToRight" ColumnCount="2">
+
+
+-<Field Type="Listbox" DisplayOrder="1" Required="True" Editable="True" Unique="False" Label="Nombre del Artesano" ColumnName="Art_CI" ElementWidthUnit="%" ElementWidth="100" NumberDisplayed="5" LabelOrientation="Left" DataType="STRING">
+
+<LookUp DataSourceName="Artesanos" DataSourceType="Table" DisplayOrder="Bottom" SortBy="text" OrderBy="ASC" Distinct="true" DisplayText="Art_Nombre" Value="Art_CI"/>
+
+</Field>
+
+<Field Type="Text Field" DisplayOrder="2" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Teléfono" ColumnName="Prod_Telefono" LabelOrientation="Left" DataType="NUMBER" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="15" Size="43"/>
+
+<Field Type="Text Field" DisplayOrder="3" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Nombre del Producto" ColumnName="Prod_Nom" LabelOrientation="Left" DataType="STRING" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="43" Calendar="False"/>
+
+<Field Type="File" DisplayOrder="4" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Imagen" ColumnName="Prod_Imagen" LabelOrientation="Left" DataType="FILE" EnabledRotation="False" DisplayType="Plain Text" SizeLimit="15" Replace="False" FolderPath="" Association="Upload"/>
+
+<Field Type="Text Field" DisplayOrder="5" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Cantidad" ColumnName="Prod_Cantidad" LabelOrientation="Left" DataType="NUMBER" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="15" Size="43"/>
+
+<Field Type="Text Field" DisplayOrder="6" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Precio" ColumnName="Prod_Precio" LabelOrientation="Left" DataType="CURRENCY" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="15" Size="43"/>
+
+<Field Type="Text Field" DisplayOrder="7" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Lugar De Elaboración" ColumnName="Prod_Lu_Ela" LabelOrientation="Left" DataType="STRING" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="43" Calendar="False"/>
+
+<Field Type="Text Field" DisplayOrder="8" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Referencia" ColumnName="Prod_Ref" LabelOrientation="Left" DataType="STRING" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="43" Calendar="False"/>
+
+<Field Type="Text Area" DisplayOrder="9" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Descripción" ColumnName="Prod_Descrip" LabelOrientation="Left" DataType="STRING" MaxLength="255" ShowRemainingCharacters="False" Rows="5" Columns="45"/>
+
+<Field Type="Text Area" DisplayOrder="10" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Medio de Distribución" ColumnName="Prod_Medio" LabelOrientation="Left" DataType="STRING" MaxLength="255" ShowRemainingCharacters="False" Rows="5" Columns="45"/>
+
+</Section>
+
+
+-<Section Type="MultiColumn" DisplayOrder="3" FieldAlignment="LeftToRight" ColumnCount="4">
+
+<Field Type="HTML Block" DisplayOrder="1" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Ventajas" RichUI="true" ColumnName="HTML Block 4"/>
+
+<Field Type="Text Area" DisplayOrder="2" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Ventajas" ColumnName="Prod_Ventajas" LabelOrientation="NoPlaced" DataType="STRING" MaxLength="255" ShowRemainingCharacters="False" Rows="5" Columns="45"/>
+
+</Section>
+
+
+-<Section Type="MultiColumn" DisplayOrder="4" FieldAlignment="LeftToRight" ColumnCount="1">
+
+<Field Type="HTML Block" DisplayOrder="1" DefaultValue="" Required="False" Editable="True" Unique="False" Label="<div style="background:#eee;border:1px solid #ccc;padding:5px 10px;"><big>Caracteristicas del Producto</big></div>" RichUI="true" ColumnName="HTML Block 2"/>
+
+</Section>
+
+
+-<Section Type="MultiColumn" DisplayOrder="5" FieldAlignment="LeftToRight" ColumnCount="2">
+
+<Field Type="Text Field" DisplayOrder="1" DefaultValue="" Required="True" Editable="True" Unique="False" Label="Materia Prima" ColumnName="Prod_Materia_Prima" LabelOrientation="Left" DataType="STRING" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="43" Calendar="False"/>
+
+<Field Type="Text Field" DisplayOrder="2" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Insumo" ColumnName="Prod_Insumo" LabelOrientation="Left" DataType="STRING" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="43" Calendar="False"/>
+
+<Field Type="Text Field" DisplayOrder="3" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Talla" ColumnName="Prod_Talla" LabelOrientation="Left" DataType="NUMBER" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="15" Size="43"/>
+
+<Field Type="Text Field" DisplayOrder="4" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Medidas" ColumnName="Prod_Medidas" LabelOrientation="Left" DataType="NUMBER" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="15" Size="43"/>
+
+<Field Type="Text Field" DisplayOrder="5" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Color" ColumnName="Prod_Color" LabelOrientation="Left" DataType="STRING" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="43" Calendar="False"/>
+
+<Field Type="Text Field" DisplayOrder="6" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Peso" ColumnName="Prod_Peso" LabelOrientation="Left" DataType="NUMBER" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="15" Size="43"/>
+
+<Field Type="Text Field" DisplayOrder="7" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Olor" ColumnName="Prod_Olor" LabelOrientation="Left" DataType="STRING" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="43" Calendar="False"/>
+
+<Field Type="Text Field" DisplayOrder="8" DefaultValue="" Required="False" Editable="True" Unique="False" Label="Otra" ColumnName="Prod_Otra" LabelOrientation="Left" DataType="STRING" Confirmation="false" TypePassword="False" MinLength="0" MaxLength="255" Size="43" Calendar="False"/>
+
+</Section>
+
+</NewRecordPage>
+
+<Note/>
+
+</Application>
+
+</xml>
+<!--//-------Crear ventana de visualizar Productos.-->
+<?xml version="1.0" encoding="UTF-8"?>
+
+-<xml>
+
+
+-<Application EditAdvanced="true" AllowCriteriaParameters="Y" AllowParameters="Y" Version="9.8" HomePageName="ProductoVer" Name="ProductoVer" AppKey="4D3B5000be84c690bc514515928a" Type="WebApp">
+
+
+-<StandaloneRecordsetPage Name="ProductoVer" SearchAgainLink="False" InlineAdd="False" TotalRows="9999" DisplayColumns="3" FreezeColumnsCount="0" ApplyRandomSort="False" AjaxEnabled="False" BulkUpdate="False" BulkDelete="False" JumpToPage="False" ColumnSorting="true" HideNumberOfRecords="false" ColumnSortingLabelOrientation="Left" ColumnSortingLabel="Sort by" RowsPerPage="24" ColumnSortingType="Selectbox" Display="Columnar" ReportFooter="" ReportHeader="" DefaultOperator="AND" RichFooter="True" RichHeader="True" PageHeader="<script> function listaArt(){ window.location='https://[@import:ServerName:DefaultSubDomain]/dp.asp?AppKey=4D3B5000eeca6377338646ea9385'; } function salir(){ window.location='https://[@import:ServerName:DefaultSubDomain]/folderlogout'; } </script><button onclick="listaArt();">Agregar Producto</button><button onclick="salir();">Salir</button> <h1><br /> Productos</h1> " PageName="ProductoVer" DataSourceName="Artesano_Producto" DataSourceType="Table">
+
+<CriteriaRoot/>
+
+<DisplayField Type="HTML Block" DisplayOrder="1" SortDir="" SortOrder="" AllowJS="False" Label="<br />" KeepWithNext="True" RichUI="False" ColumnName="HTML Block 2"/>
+
+<DisplayField Type="AutoFile" DisplayOrder="2" SortDir="" SortOrder="" Label="Imagen" KeepWithNext="False" ColumnName="Prod_Imagen" Editable="False" Height="200" Width="200" ShowAsLink="true" ShowFullPath="false" Unique="False" DataType="FILE"/>
+
+
+-<DisplayField Type="Plain Text" DisplayOrder="3" SortDir="" SortOrder="" Label="Nombre" KeepWithNext="False" ColumnName="Prod_Nom" Editable="False" Unique="False" DataType="STRING" AdvSortingAscLabel="Nombre (A to Z)" AdvSortingAsc="True" AdvSortingDisplayOrder="1">
+
+<Format Type=""/>
+
+</DisplayField>
+
+
+-<DisplayField Type="Plain Text" DisplayOrder="4" SortDir="" SortOrder="" Label="Cantidad" KeepWithNext="False" ColumnName="Prod_Cantidad" Editable="False" Unique="False" DataType="NUMBER">
+
+<Format Type="Number" DecimalDigits="0" NegativePattern="1" NegativeSign="-" GroupSeparator=" " DecimalSeparator=" " Culture="es-ES"/>
+
+</DisplayField>
+
+
+-<DisplayField Type="Plain Text" DisplayOrder="5" SortDir="" SortOrder="" Label="Precio" KeepWithNext="False" ColumnName="Prod_Precio" Editable="False" Unique="False" DataType="CURRENCY" AdvSortingAscLabel="Precio (Low to High)" AdvSortingAsc="True" AdvSortingDisplayOrder="2">
+
+<Format Type="Currency"/>
+
+</DisplayField>
+
+
+-<DisplayField Type="Hidden" DisplayOrder="6" SortDir="ASC" SortOrder="1" Label="Art CI" KeepWithNext="False" ColumnName="Art_CI" Unique="False" DataType="STRING" AdvSortingAscLabel="Art CI (A to Z)" AdvSortingAsc="True" AdvSortingDisplayOrder="3">
+
+<Format Type=""/>
+
+</DisplayField>
+
+
+-<RecordDetailsPage SearchAgainLink="False" JumpToPage="True" RichFooter="True" RichHeader="True" PageHeader="<script> function listaArt(){ window.location='https://[@import:ServerName:DefaultSubDomain]/dp.asp?AppKey=4D3B5000eeca6377338646ea9385'; } function salir(){ window.location='https://[@import:ServerName:DefaultSubDomain]/folderlogout'; } </script><button onclick="listaArt();">Agregar Producto</button><button onclick="salir();">Salir</button> <h1><br /> Productos</h1> " RichDeleteMessage="False" RichMessage="False" DeleteRecord="True" DeleteTargetType="Results" TargetType="Results" AutoFocusInFirstField="False">
+
+
+-<Section Type="MultiColumn" DisplayOrder="1" FieldAlignment="LeftToRight" ColumnCount="1">
+
+<Field Type="File" DisplayOrder="1" Label="Imagen" ColumnName="Prod_Imagen" Editable="True" Unique="False" DataType="FILE" EnabledRotation="False" DisplayType="None" SizeLimit="1" Replace="False" FolderPath="" Association="Upload" DefaultValue="" Required="False" LabelOrientation="Left"/>
+
+<Field Type="HTML Block" DisplayOrder="2" Label="<script> function valida(e){ tecla = (document.all) ? e.keyCode : e.which; //Tecla de retroceso para borrar, siempre la permite if (tecla==8){ return true; } // Patron de entrada, en este caso solo acepta numeros patron =/[0-9]/; tecla_final = String.fromCharCode(tecla); return patron.test(tecla_final); } function validaP(e){ tecla = (document.all) ? e.keyCode : e.which; //Tecla de retroceso para borrar, siempre la permite if (tecla==8){ return true; } var x = document.getElementById('InsertRecordProd_Precio').value.indexOf(","); if(x==-1){ if(tecla==44){ return true; } } // Patron de entrada, en este caso solo acepta numeros patron =/[0-9]/; tecla_final = String.fromCharCode(tecla); return patron.test(tecla_final); } window.onload = function() { document.getElementById('InsertRecordProd_Telefono').onkeypress = function(event) { return(valida(event)); }; document.getElementById('InsertRecordProd_Cantidad').onkeypress = function(event) { return(valida(event)); }; document.getElementById('InsertRecordProd_Talla').onkeypress = function(event) { return(valida(event)); }; document.getElementById('InsertRecordProd_Medidas').onkeypress = function(event) { return(valida(event)); }; document.getElementById('InsertRecordProd_Peso').onkeypress = function(event) { return(valida(event)); }; document.getElementById('InsertRecordProd_Precio').onkeypress = function(event) { return(validaP(event)); }; } </script>" RichUI="true" ColumnName="HTML Block 2" Editable="True" Unique="False" DefaultValue="" Required="False"/>
+
+</Section>
+
+
+-<Section Type="MultiColumn" DisplayOrder="2" FieldAlignment="LeftToRight" ColumnCount="2">
+
+
+-<Field Type="Static" DisplayOrder="1" Label="C.I. / RUC / RISE" ColumnName="Art_CI" Editable="False" Unique="False" DataType="STRING" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+<Field Type="Text Field" DisplayOrder="2" Label="Nombre" ColumnName="Prod_Nom" Editable="True" Unique="False" DataType="STRING" DefaultValue="" Required="True" LabelOrientation="Left" Calendar="False" Confirmation="false" TypePassword="false" MinLength="0" MaxLength="255" Size="25"/>
+
+<Field Type="Text Area" DisplayOrder="3" Label="Descripción" ColumnName="Prod_Descrip" Editable="True" Unique="False" DataType="STRING" DefaultValue="" Required="False" LabelOrientation="Left" MaxLength="255" ShowRemainingCharacters="False" Rows="5" Columns="50"/>
+
+
+-<Field Type="Static" DisplayOrder="4" Label="Lugar De Elaboracion" ColumnName="Prod_Lu_Ela" Editable="False" Unique="False" DataType="STRING" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="5" Label="Referencia" ColumnName="Prod_Ref" Editable="False" Unique="False" DataType="STRING" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="6" Label="Telefono" ColumnName="Prod_Telefono" Editable="False" Unique="False" DataType="NUMBER" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+<Field Type="Text Field" DisplayOrder="7" Label="Cantidad" ColumnName="Prod_Cantidad" Editable="True" Unique="False" DataType="NUMBER" DefaultValue="" Required="True" LabelOrientation="Left" Confirmation="false" MinLength="0" MaxLength="255" Size="25"/>
+
+<Field Type="Text Field" DisplayOrder="8" Label="Precio" ColumnName="Prod_Precio" Editable="True" Unique="False" DataType="CURRENCY" DefaultValue="" Required="False" LabelOrientation="Left" Confirmation="false" MinLength="0" MaxLength="255" Size="25"/>
+
+
+-<Field Type="Static" DisplayOrder="9" Label="Ventajas del Producto" ColumnName="Prod_Ventajas" Editable="False" Unique="False" DataType="STRING" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="10" Label="Medio de Distribución" ColumnName="Prod_Medio" Editable="False" Unique="False" DataType="STRING" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+</Section>
+
+
+-<Section Type="MultiColumn" DisplayOrder="3" FieldAlignment="LeftToRight" ColumnCount="1">
+
+<Field Type="HTML Block" DisplayOrder="1" Label="<h1 style="background: rgb(228, 228, 228); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">Caracteristicas</h1>" RichUI="true" ColumnName="HTML Block 1" Editable="True" Unique="False" DefaultValue="" Required="False"/>
+
+</Section>
+
+
+-<Section Type="MultiColumn" DisplayOrder="4" FieldAlignment="LeftToRight" ColumnCount="2">
+
+
+-<Field Type="Static" DisplayOrder="1" Label="Materia Prima" ColumnName="Prod_Materia_Prima" Editable="False" Unique="False" DataType="STRING" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="2" Label="Insumo" ColumnName="Prod_Insumo" Editable="False" Unique="False" DataType="STRING" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="3" Label="Talla" ColumnName="Prod_Talla" Editable="False" Unique="False" DataType="NUMBER" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="4" Label="Medidas" ColumnName="Prod_Medidas" Editable="False" Unique="False" DataType="NUMBER" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="5" Label="Color" ColumnName="Prod_Color" Editable="False" Unique="False" DataType="STRING" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="6" Label="Peso" ColumnName="Prod_Peso" Editable="False" Unique="False" DataType="NUMBER" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="7" Label="Olor" ColumnName="Prod_Olor" Editable="False" Unique="False" DataType="STRING" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+
+-<Field Type="Static" DisplayOrder="8" Label="Otra" ColumnName="Prod_Otra" Editable="False" Unique="False" DataType="STRING" DisplayType="Plain Text" DefaultValue="" Required="False" LabelOrientation="Left">
+
+<Format Type=""/>
+
+</Field>
+
+</Section>
+
+</RecordDetailsPage>
+
+<RecordAction DisplayOrder="1" Label="Delete" ActionType="INLINE DELETE"/>
+
+<RecordAction Type="Special" DisplayOrder="2" Label="View Details" ActionType="VIEW"/>
+
+</StandaloneRecordsetPage>
+
+<Note/>
+
+</Application>
+
+</xml>
+
